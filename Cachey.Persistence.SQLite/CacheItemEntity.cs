@@ -2,15 +2,20 @@ namespace Cachey.Persistence.SQLite;
 
 public class CacheItemEntity
 {
-    public string Key { get; set; } // Кључ кеша (извршава идентификацију кеша)
-
-    public string
-        Value
-    {
-        get;
-        set;
-    } // Вредност кеша, која ће бити серијализована у стринг (мора се десеријализовати приликом читања)
-
-    public DateTime CreatedAt { get; set; } // Време када је ставка додата
+    /// <summary>
+    /// Cache key (cache identifier)
+    /// </summary>
+    public string Key { get; set; }
+    /// <summary>
+    /// Cache value that will be serialized to string (must be deserialized during the read)
+    /// </summary>
+    public string Value { get; set; }
+    /// <summary>
+    /// Creation time
+    /// </summary>
+    public DateTime CreatedAt { get; set; }
+    /// <summary>
+    /// Expiration time
+    /// </summary>
     public DateTime? Expiration { get; set; } // Време истека кеша
 }

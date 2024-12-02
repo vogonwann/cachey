@@ -73,26 +73,26 @@ public class MemoryCacheTests
         await _cache.SetAsync(key1, value1, TimeSpan.FromMilliseconds(10));
         await _cache.SetAsync(key2, value2, TimeSpan.FromSeconds(10));
 
-        // Покрећемо позадински сервис
+        // Start background service
         var logger = new Logger<CacheCleanupService>(new LoggerFactory());
         var cleanupService = new CacheCleanupService(logger, _cache, TimeSpan.FromMilliseconds(10));
         var cancellationTokenSource = new CancellationTokenSource();
         var cleanupTask = cleanupService.StartAsync(cancellationTokenSource.Token);
 
-        // Чекамо довољно дуго да позадински сервис уклони истекле ставке
+        // Wait for the service to remove the expired items
         await Task.Delay(50);
 
         // Act
         var existsKey1 = await _cache.ContainsAsync(key1, cancellationTokenSource.Token);
         var existsKey2 = await _cache.ContainsAsync(key2, cancellationTokenSource.Token);
 
-        // Прекидамо позадински сервис
+        // Stop the background seervice
         cancellationTokenSource.Cancel();
         await cleanupTask;
 
         // Assert
-        Assert.False(existsKey1); // Истекла ставка је уклоњена
-        Assert.True(existsKey2); // Важећа ставка и даље постоји
+        Assert.False(existsKey1);
+        Assert.True(existsKey2);
     }
     
     [Fact]

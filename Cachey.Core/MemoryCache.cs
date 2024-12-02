@@ -3,9 +3,9 @@ using System.Collections.Concurrent;
 namespace Cachey.Core;
 
 /// <summary>
-///     MemoryCache is a class that provides in-memory caching functionality with support for both asynchronous and
-///     synchronous operations.
-///     It offers a simple way to store and retrieve data, with support for expiration times.
+/// MemoryCache is a class that provides in-memory caching functionality with support for both asynchronous and
+/// synchronous operations.
+/// It offers a simple way to store and retrieve data, with support for expiration times.
 /// </summary>
 public class MemoryCache : ICache
 {
@@ -13,12 +13,21 @@ public class MemoryCache : ICache
     private readonly MemoryCacheMetrics _metrics = new();
     private readonly ICache _persistentCache;
 
-
     public MemoryCache(ICache? persistentCache = null)
     {
         _persistentCache = persistentCache;
     }
 
+    /// <summary>
+    /// Retrieves a cached value by its key. If the value is not found or has expired, it returns
+    /// default(T).
+    /// </summary>
+    /// <typeparam name="T">The type expected to be returned.</typeparam>
+    /// <param name="key">The key of the cached value.</param>
+    /// <returns>
+    ///  Cached value if found and not expired, otherwise
+    ///  default(T).
+    /// </returns>
     public T? Get<T>(string key)
     {
         if (_cache.TryGetValue(key, out var value))
@@ -33,16 +42,16 @@ public class MemoryCache : ICache
     }
 
     /// <summary>
-    ///     Asynchronously retrieves a cached value by its key. If the value is not found or has expired, it returns
-    ///     default(T).
+    /// Asynchronously retrieves a cached value by its key. If the value is not found or has expired, it returns
+    /// default(T).
     /// </summary>
     /// <typeparam name="T">The type expected to be returned.</typeparam>
     /// <param name="key">The key of the cached value.</param>
     /// <param name="expiration">Optional expiration time.</param>
     /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>
-    ///     A task that represents the asynchronous operation, with the cached value if found and not expired, otherwise
-    ///     default(T).
+    ///  A task that represents the asynchronous operation, with the cached value if found and not expired, otherwise
+    ///  default(T).
     /// </returns>
     public async Task<T?> GetAsync<T>(string key, TimeSpan? expiration = null,
         CancellationToken cancellationToken = default)
@@ -61,7 +70,7 @@ public class MemoryCache : ICache
     }
 
     /// <summary>
-    ///     Adds a new item to the cache. If no expiration time is specified, the value will remain in the cache until removed.
+    /// Adds a new item to the cache. If no expiration time is specified, the value will remain in the cache until removed.
     /// </summary>
     /// <typeparam name="T">The type of the cached value.</typeparam>
     /// <param name="key">The key under which the value will be cached.</param>
@@ -76,8 +85,8 @@ public class MemoryCache : ICache
     }
 
     /// <summary>
-    ///     Adds a new item to the cache asynchronously. If no expiration time is specified, the value will remain in the cache
-    ///     until removed.
+    /// Adds a new item to the cache asynchronously. If no expiration time is specified, the value will remain in the cache
+    /// until removed.
     /// </summary>
     /// <typeparam name="T">The type of the cached value.</typeparam>
     /// <param name="key">The key under which the value will be cached.</param>
@@ -95,7 +104,7 @@ public class MemoryCache : ICache
     }
 
     /// <summary>
-    ///     Removes a cached value by its key.
+    /// Removes a cached value by its key.
     /// </summary>
     /// <param name="key">The key of the cached value to be removed.</param>
     public void Remove(string key)
@@ -106,7 +115,7 @@ public class MemoryCache : ICache
     }
 
     /// <summary>
-    ///     Removes a cached value by its key asynchronously.
+    /// Removes a cached value by its key asynchronously.
     /// </summary>
     /// <param name="key">The key of the cached value to be removed.</param>
     /// <param name="cancellationToken">Cancellation token.</param>
@@ -119,7 +128,7 @@ public class MemoryCache : ICache
     }
 
     /// <summary>
-    ///     Check if key exists in cache.
+    /// Check if key exists in cache.
     /// </summary>
     /// <param name="key">The key of the cached value to be searched.</param>
     /// <returns>Return a value that represents existence of the given key.</returns>
@@ -129,7 +138,7 @@ public class MemoryCache : ICache
     }
 
     /// <summary>
-    ///     Check if key exists in cache asynchronously.
+    /// Check if key exists in cache asynchronously.
     /// </summary>
     /// <param name="key">The key of the cached value to be searched.</param>
     /// <param name="cancellationToken">Cancellation token.</param>
@@ -141,7 +150,7 @@ public class MemoryCache : ICache
     }
 
     /// <summary>
-    ///     Clears all cached items.
+    /// Clears all cached items.
     /// </summary>
     public void Clear()
     {
@@ -149,13 +158,16 @@ public class MemoryCache : ICache
     }
 
     /// <summary>
-    ///     Asynchronously clears all cached items.
+    /// Asynchronously clears all cached items.
     /// </summary>
     public async Task ClearAsync(CancellationToken cancellationToken = default)
     {
         await Task.Run(Clear, cancellationToken);
     }
 
+    /// <summary>
+    /// Removes expired items from cache
+    /// </summary>
     public async Task RemoveExpiredItemsAsync()
     {
         var expiredItems = _cache

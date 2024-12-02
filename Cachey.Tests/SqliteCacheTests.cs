@@ -1,6 +1,8 @@
+using Cachey.Core;
 using Cachey.Persistence.SQLite;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 namespace Cachey.Tests;
 
@@ -46,9 +48,22 @@ public class SqliteCacheTests
         // Arrange
         const string key = "expiredKey";
         const string value = "expiredValue";
+        
+        // Start background service
+        var logger = new Logger<CacheCleanupService>(new LoggerFactory());
+        var cleanupService = new CacheCleanupService(logger, _sqliteCache, TimeSpan.FromMilliseconds(10));
+        var cancellationTokenSource = new CancellationTokenSource();
+        var cleanupTask = cleanupService.StartAsync(cancellationTokenSource.Token);
 
-        await _sqliteCache.SetAsync(key, value, TimeSpan.FromMilliseconds(5));
-        await Task.Delay(10); // Wait for expiration
+        // Wait for the service to remove the expired items
+        await Task.Delay(50);
+
+        await _sqliteCache.SetAsync(key, value, TimeSpan.FromMilliseconds(5), cancellationTokenSource.Token);
+        await Task.Delay(100, cancellationTokenSource.Token); // Wait for expiration
+        
+        // Stop the background service
+        cancellationTokenSource.Cancel();
+        await cleanupTask;
 
         // Act
         var retrievedValue = await _sqliteCache.GetAsync<string>(key);

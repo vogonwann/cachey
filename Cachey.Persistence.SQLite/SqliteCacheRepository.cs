@@ -4,8 +4,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Cachey.Persistence.SQLite;
 
+/// <inheritdoc />
 public class SqliteCacheRepository(CacheyDbContext dbContext) : ICache
 {
+    /// <inheritdoc />
     public async Task SetAsync<T>(string key, T value, TimeSpan? expiry = null,
         CancellationToken cancellationToken = default)
     {
@@ -21,7 +23,7 @@ public class SqliteCacheRepository(CacheyDbContext dbContext) : ICache
         await dbContext.CacheItems.AddAsync(entity, cancellationToken);
         await dbContext.SaveChangesAsync(cancellationToken);
     }
-
+    /// <inheritdoc />
     public async Task<T?> GetAsync<T>(string key, TimeSpan? expiration = null,
         CancellationToken cancellationToken = default)
     {
@@ -37,7 +39,7 @@ public class SqliteCacheRepository(CacheyDbContext dbContext) : ICache
         // Explicitly cast to nullable type T? and return the value
         return cacheItem != null ? (T?)cacheItem.Value : default;
     }
-
+    /// <inheritdoc />
     public void Set<T>(string key, T value, TimeSpan? expiry = null)
     {
         var cacheItem = new CacheItem<T>(value, expiry); // Пример времена истека
@@ -52,7 +54,7 @@ public class SqliteCacheRepository(CacheyDbContext dbContext) : ICache
         dbContext.CacheItems.Add(entity);
         dbContext.SaveChanges();
     }
-
+    /// <inheritdoc />
     public T? Get<T>(string key)
     {
         var entity = dbContext.CacheItems
@@ -67,7 +69,7 @@ public class SqliteCacheRepository(CacheyDbContext dbContext) : ICache
         // Explicitly cast to nullable type T? and return the value
         return cacheItem != null ? (T?)cacheItem.Value : default;
     }
-
+    /// <inheritdoc />
     public void Remove(string key)
     {
         var entity = dbContext.CacheItems
@@ -79,38 +81,24 @@ public class SqliteCacheRepository(CacheyDbContext dbContext) : ICache
             dbContext.SaveChanges();
         }
     }
-
-    public async Task RemoveAsync(string key, CancellationToken cancellationToken = default)
-    {
-        cancellationToken.ThrowIfCancellationRequested();
-        Remove(key);
-
-        await Task.CompletedTask;
-    }
-
+    /// <inheritdoc />
     public bool Contains(string key)
     {
         return dbContext.CacheItems.Any(x => x.Key == key);
     }
-
-    public async Task<bool> ContainsAsync(string key, CancellationToken cancellationToken = default)
-    {
-        cancellationToken.ThrowIfCancellationRequested();
-        return await Task.FromResult(Contains(key));
-    }
-
+    /// <inheritdoc />
     public void Clear()
     {
         dbContext.CacheItems.RemoveRange(dbContext.CacheItems);
         dbContext.SaveChanges();
     }
-
+    /// <inheritdoc />
     public async Task ClearAsync(CancellationToken cancellationToken = default)
     {
         dbContext.CacheItems.RemoveRange(dbContext.CacheItems);
         await dbContext.SaveChangesAsync(cancellationToken);
     }
-
+    /// <inheritdoc />
     public async Task RemoveExpiredItemsAsync()
     {
         var expiredItems = await dbContext.CacheItems
@@ -120,27 +108,21 @@ public class SqliteCacheRepository(CacheyDbContext dbContext) : ICache
         dbContext.CacheItems.RemoveRange(expiredItems);
         await dbContext.SaveChangesAsync();
     }
-
-    public async Task RemoveAsync(string key)
+    /// <inheritdoc />
+    public async Task RemoveAsync(string key, CancellationToken cancellationToken = default)
     {
         var entity = await dbContext.CacheItems
-            .FirstOrDefaultAsync(x => x.Key == key);
+            .FirstOrDefaultAsync(x => x.Key == key, cancellationToken);
 
         if (entity != null)
         {
             dbContext.CacheItems.Remove(entity);
-            await dbContext.SaveChangesAsync();
+            await dbContext.SaveChangesAsync(cancellationToken);
         }
     }
-
-    public async Task<bool> ContainsAsync(string containskey)
+    /// <inheritdoc />
+    public async Task<bool> ContainsAsync(string containskey, CancellationToken cancellationToken = default)
     {
-        return await dbContext.CacheItems.AnyAsync(i => i.Key == containskey);
-    }
-
-    public async Task ClearAsync()
-    {
-        dbContext.CacheItems.RemoveRange(dbContext.CacheItems);
-        await dbContext.SaveChangesAsync();
+        return await dbContext.CacheItems.AnyAsync(i => i.Key == containskey, cancellationToken);
     }
 }
