@@ -1,0 +1,235 @@
+{
+  "format": 1,
+  "restore": {
+    "/home/wann/Development/dotnet/Cachey/Cachey.Tests/Cachey.Tests.csproj": {}
+  },
+  "projects": {
+    "/home/wann/Development/dotnet/Cachey/Cachey.Core/Cachey.Core.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/wann/Development/dotnet/Cachey/Cachey.Core/Cachey.Core.csproj",
+        "projectName": "Cachey.Core",
+        "projectPath": "/home/wann/Development/dotnet/Cachey/Cachey.Core/Cachey.Core.csproj",
+        "packagesPath": "/home/wann/.nuget/packages/",
+        "outputPath": "/home/wann/Development/dotnet/Cachey/Cachey.Core/obj/",
+        "projectStyle": "PackageReference",
+        "UsingMicrosoftNETSdk": false,
+        "configFilePaths": [
+          "/home/wann/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net9.0"
+        ],
+        "sources": {
+          "/usr/lib64/dotnet/library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net9.0": {
+            "targetAlias": "net9.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "all"
+        }
+      },
+      "frameworks": {
+        "net9.0": {
+          "targetAlias": "net9.0",
+          "dependencies": {
+            "Microsoft.Extensions.Hosting.Abstractions": {
+              "target": "Package",
+              "version": "[9.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/lib64/dotnet/sdk/9.0.100/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/wann/Development/dotnet/Cachey/Cachey.Persistence.SQLite/Cachey.Persistence.SQLite.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/wann/Development/dotnet/Cachey/Cachey.Persistence.SQLite/Cachey.Persistence.SQLite.csproj",
+        "projectName": "Cachey.Persistence.SQLite",
+        "projectPath": "/home/wann/Development/dotnet/Cachey/Cachey.Persistence.SQLite/Cachey.Persistence.SQLite.csproj",
+        "packagesPath": "/home/wann/.nuget/packages/",
+        "outputPath": "/home/wann/Development/dotnet/Cachey/Cachey.Persistence.SQLite/obj/",
+        "projectStyle": "PackageReference",
+        "UsingMicrosoftNETSdk": false,
+        "configFilePaths": [
+          "/home/wann/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net9.0"
+        ],
+        "sources": {
+          "/usr/lib64/dotnet/library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net9.0": {
+            "targetAlias": "net9.0",
+            "projectReferences": {
+              "/home/wann/Development/dotnet/Cachey/Cachey.Core/Cachey.Core.csproj": {
+                "projectPath": "/home/wann/Development/dotnet/Cachey/Cachey.Core/Cachey.Core.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "all"
+        }
+      },
+      "frameworks": {
+        "net9.0": {
+          "targetAlias": "net9.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[9.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.Sqlite": {
+              "target": "Package",
+              "version": "[9.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/lib64/dotnet/sdk/9.0.100/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/wann/Development/dotnet/Cachey/Cachey.Tests/Cachey.Tests.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/wann/Development/dotnet/Cachey/Cachey.Tests/Cachey.Tests.csproj",
+        "projectName": "Cachey.Tests",
+        "projectPath": "/home/wann/Development/dotnet/Cachey/Cachey.Tests/Cachey.Tests.csproj",
+        "packagesPath": "/home/wann/.nuget/packages/",
+        "outputPath": "/home/wann/Development/dotnet/Cachey/Cachey.Tests/obj/",
+        "projectStyle": "PackageReference",
+        "UsingMicrosoftNETSdk": false,
+        "configFilePaths": [
+          "/home/wann/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net9.0"
+        ],
+        "sources": {
+          "/usr/lib64/dotnet/library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net9.0": {
+            "targetAlias": "net9.0",
+            "projectReferences": {
+              "/home/wann/Development/dotnet/Cachey/Cachey.Core/Cachey.Core.csproj": {
+                "projectPath": "/home/wann/Development/dotnet/Cachey/Cachey.Core/Cachey.Core.csproj"
+              },
+              "/home/wann/Development/dotnet/Cachey/Cachey.Persistence.SQLite/Cachey.Persistence.SQLite.csproj": {
+                "projectPath": "/home/wann/Development/dotnet/Cachey/Cachey.Persistence.SQLite/Cachey.Persistence.SQLite.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "all"
+        }
+      },
+      "frameworks": {
+        "net9.0": {
+          "targetAlias": "net9.0",
+          "dependencies": {
+            "Microsoft.NET.Test.Sdk": {
+              "target": "Package",
+              "version": "[17.11.1, )"
+            },
+            "coverlet.collector": {
+              "target": "Package",
+              "version": "[6.0.2, )"
+            },
+            "xunit": {
+              "target": "Package",
+              "version": "[2.9.2, )"
+            },
+            "xunit.runner.visualstudio": {
+              "target": "Package",
+              "version": "[2.8.2, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/lib64/dotnet/sdk/9.0.100/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

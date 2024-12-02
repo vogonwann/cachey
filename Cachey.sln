@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cachey.Core", "Cachey.Core\Cachey.Core.csproj", "{29461577-0466-4EB6-97B1-227BF62E48D7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cachey.Tests", "Cachey.Tests\Cachey.Tests.csproj", "{9B036685-A16E-4CD2-B889-A7FA8D6E878C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Persistence", "Persistence", "{DFD1C240-72B6-4397-81EC-4B98EDE3A860}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cachey.Persistence.SQLite", "Cachey.Persistence.SQLite\Cachey.Persistence.SQLite.csproj", "{39882249-EE88-435F-B830-5BE92EA567DD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{29461577-0466-4EB6-97B1-227BF62E48D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29461577-0466-4EB6-97B1-227BF62E48D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29461577-0466-4EB6-97B1-227BF62E48D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29461577-0466-4EB6-97B1-227BF62E48D7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9B036685-A16E-4CD2-B889-A7FA8D6E878C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B036685-A16E-4CD2-B889-A7FA8D6E878C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B036685-A16E-4CD2-B889-A7FA8D6E878C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B036685-A16E-4CD2-B889-A7FA8D6E878C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{39882249-EE88-435F-B830-5BE92EA567DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39882249-EE88-435F-B830-5BE92EA567DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39882249-EE88-435F-B830-5BE92EA567DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39882249-EE88-435F-B830-5BE92EA567DD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{39882249-EE88-435F-B830-5BE92EA567DD} = {DFD1C240-72B6-4397-81EC-4B98EDE3A860}
+	EndGlobalSection
+EndGlobal

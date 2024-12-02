@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package>
+    <metadata>
+        <id>Cachey</id>
+        <version>1.0.0</version>
+        <authors>Ivan Janjić</authors>
+        <owners>Ivan Janjić</owners>
+        <description>A simple and fast caching solution</description>
+        <dependencies>
+            <dependency id="Microsoft.Extensions.DependencyInjection.Abstractions" version="9.0.0" />
+            <dependency id="Microsoft.Extensions.Hosting.Abstractions" version="9.0.0" />
+        </dependencies>
+    </metadata>
+    <files>
+        <file src="bin/Release/net9.0/Cachey.Core.dll" target="lib\net9.0" />
+    </files>
+</package>

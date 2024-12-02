@@ -1,0 +1,17 @@
+/home/wann/Development/dotnet/Cachey/Cachey.Persistence.SQLite/bin/Release/net9.0/Cachey.Persistence.SQLite.deps.json
+/home/wann/Development/dotnet/Cachey/Cachey.Persistence.SQLite/bin/Release/net9.0/Cachey.Persistence.SQLite.runtimeconfig.json
+/home/wann/Development/dotnet/Cachey/Cachey.Persistence.SQLite/bin/Release/net9.0/Cachey.Persistence.SQLite.dll
+/home/wann/Development/dotnet/Cachey/Cachey.Persistence.SQLite/bin/Release/net9.0/Cachey.Persistence.SQLite.pdb
+/home/wann/Development/dotnet/Cachey/Cachey.Persistence.SQLite/bin/Release/net9.0/Cachey.Core.dll
+/home/wann/Development/dotnet/Cachey/Cachey.Persistence.SQLite/bin/Release/net9.0/Cachey.Core.pdb
+/home/wann/Development/dotnet/Cachey/Cachey.Persistence.SQLite/obj/Release/net9.0/Cachey.Persistence.SQLite.csproj.AssemblyReference.cache
+/home/wann/Development/dotnet/Cachey/Cachey.Persistence.SQLite/obj/Release/net9.0/Cachey.Persistence.SQLite.GeneratedMSBuildEditorConfig.editorconfig
+/home/wann/Development/dotnet/Cachey/Cachey.Persistence.SQLite/obj/Release/net9.0/Cachey.Persistence.SQLite.AssemblyInfoInputs.cache
+/home/wann/Development/dotnet/Cachey/Cachey.Persistence.SQLite/obj/Release/net9.0/Cachey.Persistence.SQLite.AssemblyInfo.cs
+/home/wann/Development/dotnet/Cachey/Cachey.Persistence.SQLite/obj/Release/net9.0/Cachey.Persistence.SQLite.csproj.CoreCompileInputs.cache
+/home/wann/Development/dotnet/Cachey/Cachey.Persistence.SQLite/obj/Release/net9.0/Cachey.P.ED04E1A9.Up2Date
+/home/wann/Development/dotnet/Cachey/Cachey.Persistence.SQLite/obj/Release/net9.0/Cachey.Persistence.SQLite.dll
+/home/wann/Development/dotnet/Cachey/Cachey.Persistence.SQLite/obj/Release/net9.0/refint/Cachey.Persistence.SQLite.dll
+/home/wann/Development/dotnet/Cachey/Cachey.Persistence.SQLite/obj/Release/net9.0/Cachey.Persistence.SQLite.pdb
+/home/wann/Development/dotnet/Cachey/Cachey.Persistence.SQLite/obj/Release/net9.0/Cachey.Persistence.SQLite.genruntimeconfig.cache
+/home/wann/Development/dotnet/Cachey/Cachey.Persistence.SQLite/obj/Release/net9.0/ref/Cachey.Persistence.SQLite.dll

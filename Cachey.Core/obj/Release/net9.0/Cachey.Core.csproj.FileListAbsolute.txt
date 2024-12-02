@@ -1,0 +1,12 @@
+/home/wann/Development/dotnet/Cachey/Cachey.Core/bin/Release/net9.0/Cachey.Core.deps.json
+/home/wann/Development/dotnet/Cachey/Cachey.Core/bin/Release/net9.0/Cachey.Core.dll
+/home/wann/Development/dotnet/Cachey/Cachey.Core/bin/Release/net9.0/Cachey.Core.pdb
+/home/wann/Development/dotnet/Cachey/Cachey.Core/obj/Release/net9.0/Cachey.Core.csproj.AssemblyReference.cache
+/home/wann/Development/dotnet/Cachey/Cachey.Core/obj/Release/net9.0/Cachey.Core.GeneratedMSBuildEditorConfig.editorconfig
+/home/wann/Development/dotnet/Cachey/Cachey.Core/obj/Release/net9.0/Cachey.Core.AssemblyInfoInputs.cache
+/home/wann/Development/dotnet/Cachey/Cachey.Core/obj/Release/net9.0/Cachey.Core.AssemblyInfo.cs
+/home/wann/Development/dotnet/Cachey/Cachey.Core/obj/Release/net9.0/Cachey.Core.csproj.CoreCompileInputs.cache
+/home/wann/Development/dotnet/Cachey/Cachey.Core/obj/Release/net9.0/Cachey.Core.dll
+/home/wann/Development/dotnet/Cachey/Cachey.Core/obj/Release/net9.0/refint/Cachey.Core.dll
+/home/wann/Development/dotnet/Cachey/Cachey.Core/obj/Release/net9.0/Cachey.Core.pdb
+/home/wann/Development/dotnet/Cachey/Cachey.Core/obj/Release/net9.0/ref/Cachey.Core.dll

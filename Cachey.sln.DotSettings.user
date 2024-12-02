@@ -1,0 +1,14 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/Environment/AssemblyExplorer/XmlDocument/@EntryValue">&lt;AssemblyExplorer&gt;
+  &lt;Assembly Path="/home/wann/.nuget/packages/microsoft.extensions.hosting.abstractions/9.0.0/lib/net9.0/Microsoft.Extensions.Hosting.Abstractions.dll" /&gt;
+&lt;/AssemblyExplorer&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=c45c8bbb_002Df33e_002D4056_002D9258_002Dbe289fbc2f7b/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="MemoryCacheTests" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;Or&gt;
+    &lt;TestAncestor&gt;
+      &lt;TestId&gt;xUnit::9B036685-A16E-4CD2-B889-A7FA8D6E878C::net9.0::Cachey.Tests.MemoryCacheTests&lt;/TestId&gt;
+      &lt;TestId&gt;xUnit::9B036685-A16E-4CD2-B889-A7FA8D6E878C::net9.0::Cachey.Tests.MetricsTest&lt;/TestId&gt;
+    &lt;/TestAncestor&gt;
+    &lt;ProjectFile&gt;9B036685-A16E-4CD2-B889-A7FA8D6E878C/f:SqliteCacheTests.cs&lt;/ProjectFile&gt;
+    &lt;ProjectFile&gt;9B036685-A16E-4CD2-B889-A7FA8D6E878C/f:CacheCleanupServiceTests.cs&lt;/ProjectFile&gt;
+  &lt;/Or&gt;
+&lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
