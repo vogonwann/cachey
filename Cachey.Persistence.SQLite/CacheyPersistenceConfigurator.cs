@@ -1,4 +1,4 @@
-using Cachey.Core;
+using Cachey.Common.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 

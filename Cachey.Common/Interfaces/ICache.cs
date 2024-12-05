@@ -1,4 +1,4 @@
-namespace Cachey.Core;
+namespace Cachey.Common.Interfaces;
 
 /// <summary>
 /// Interface for caching, which can be implemented in different caching types.

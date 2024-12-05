@@ -1,7 +1,7 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace Cachey.Core;
+namespace Cachey.Common;
 
 public class CacheItemConverter : JsonConverter<object>
 {

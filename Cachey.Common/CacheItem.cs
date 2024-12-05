@@ -1,4 +1,4 @@
-namespace Cachey.Core;
+namespace Cachey.Common;
 
 public class CacheItem<T>
 {

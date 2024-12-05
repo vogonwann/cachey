@@ -12,7 +12,8 @@ public class CacheCleanupServiceTests
     {
         _memoryCache = new MemoryCache();
         var logger = new Logger<CacheCleanupService>(new LoggerFactory());
-        _cleanupService = new CacheCleanupService(logger, _memoryCache, TimeSpan.FromMilliseconds(100));
+        _cleanupService = new CacheCleanupService(logger, _memoryCache);
+        _cleanupService.SetCleanupInterval(TimeSpan.FromMilliseconds(100));
     }
 
     [Fact]

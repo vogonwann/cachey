@@ -1,12 +1,29 @@
+using Cachey.Common.Interfaces;
+using Cachey.Persistence.SQLite;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Cachey.Core;
 
 public static class CacheyConfigurator
 {
-    public static IServiceCollection UseCachey(this IServiceCollection serviceCollection)
+    public static IServiceCollection UseCachey(this IServiceCollection serviceCollection, IConfiguration configuration)
     {
-        serviceCollection.AddTransient<ICache, MemoryCache>();
+        bool.TryParse(configuration.GetSection("Cache").Value, out var usePersistentCache);
+        
+        if (usePersistentCache)
+        {
+            serviceCollection.AddTransient<ICache, SqliteCacheRepository>();
+            serviceCollection.AddDbContext<CacheyDbContext>(options =>
+                options.UseSqlite("DataSource=mycache.db"));
+            serviceCollection.AddTransient<ICache, SqliteCacheRepository>();
+        }
+        else
+        {
+            serviceCollection.AddTransient<ICache, MemoryCache>();
+        }
+
         return serviceCollection;
     }
     public static IServiceCollection AddCacheCleanupService(this IServiceCollection services, TimeSpan cleanupInterval)

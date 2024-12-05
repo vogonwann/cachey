@@ -1,5 +1,6 @@
 using System.Text.Json;
-using Cachey.Core;
+using Cachey.Common;
+using Cachey.Common.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace Cachey.Persistence.SQLite;

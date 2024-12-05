@@ -8,6 +8,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Persistence", "Persistence"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cachey.Persistence.SQLite", "Cachey.Persistence.SQLite\Cachey.Persistence.SQLite.csproj", "{39882249-EE88-435F-B830-5BE92EA567DD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cachey.Common", "Cachey.Common\Cachey.Common.csproj", "{046245C6-52A2-4B4D-8A0F-844F3B64E197}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,8 +28,13 @@ Global
 		{39882249-EE88-435F-B830-5BE92EA567DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{39882249-EE88-435F-B830-5BE92EA567DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{39882249-EE88-435F-B830-5BE92EA567DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{046245C6-52A2-4B4D-8A0F-844F3B64E197}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{046245C6-52A2-4B4D-8A0F-844F3B64E197}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{046245C6-52A2-4B4D-8A0F-844F3B64E197}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{046245C6-52A2-4B4D-8A0F-844F3B64E197}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{39882249-EE88-435F-B830-5BE92EA567DD} = {DFD1C240-72B6-4397-81EC-4B98EDE3A860}
+		{046245C6-52A2-4B4D-8A0F-844F3B64E197} = {DFD1C240-72B6-4397-81EC-4B98EDE3A860}
 	EndGlobalSection
 EndGlobal

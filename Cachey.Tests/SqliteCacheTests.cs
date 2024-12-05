@@ -51,7 +51,8 @@ public class SqliteCacheTests
         
         // Start background service
         var logger = new Logger<CacheCleanupService>(new LoggerFactory());
-        var cleanupService = new CacheCleanupService(logger, _sqliteCache, TimeSpan.FromMilliseconds(10));
+        var cleanupService = new CacheCleanupService(logger, _sqliteCache);
+        cleanupService.SetCleanupInterval(TimeSpan.FromMilliseconds(10));
         var cancellationTokenSource = new CancellationTokenSource();
         var cleanupTask = cleanupService.StartAsync(cancellationTokenSource.Token);
 

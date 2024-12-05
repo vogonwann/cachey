@@ -16,6 +16,11 @@
     <ItemGroup>
         <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="9.0.0"/>
     </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Cachey.Common\Cachey.Common.csproj" />
+      <ProjectReference Include="..\Cachey.Persistence.SQLite\Cachey.Persistence.SQLite.csproj" />
+    </ItemGroup>
     <PropertyGroup>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <PackageReadmeFile>README.md</PackageReadmeFile>

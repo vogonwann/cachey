@@ -1,4 +1,6 @@
 using System.Collections.Concurrent;
+using Cachey.Common;
+using Cachey.Common.Interfaces;
 
 namespace Cachey.Core;
 
@@ -11,12 +13,12 @@ public class MemoryCache : ICache
 {
     private readonly ConcurrentDictionary<string, object> _cache = new();
     private readonly MemoryCacheMetrics _metrics = new();
-    private readonly ICache _persistentCache;
+    // private readonly ICache _persistentCache;
 
-    public MemoryCache(ICache? persistentCache = null)
-    {
-        _persistentCache = persistentCache;
-    }
+    // public MemoryCache(ICache? persistentCache = null)
+    // {
+    //     _persistentCache = persistentCache;
+    // }
 
     /// <summary>
     /// Retrieves a cached value by its key. If the value is not found or has expired, it returns
@@ -63,7 +65,7 @@ public class MemoryCache : ICache
                 return cacheItem.Value;
             }
 
-        if (_persistentCache != null) return await _persistentCache.GetAsync<T>(key);
+        // if (_persistentCache != null) return await _persistentCache.GetAsync<T>(key);
 
         _metrics.RegisterMiss();
         return default;
@@ -81,7 +83,7 @@ public class MemoryCache : ICache
         var cacheItem = new CacheItem<T>(value, expiration);
         _cache[key] = cacheItem;
 
-        if (_persistentCache != null) _persistentCache.Set<T>(key, value, expiration);
+       // if (_persistentCache != null) _persistentCache.Set<T>(key, value, expiration);
     }
 
     /// <summary>
@@ -100,7 +102,7 @@ public class MemoryCache : ICache
         _cache[key] = cacheItem;
         await Task.CompletedTask;
 
-        if (_persistentCache != null) await _persistentCache.SetAsync<T>(key, value, expiration);
+        // if (_persistentCache != null) await _persistentCache.SetAsync<T>(key, value, expiration);
     }
 
     /// <summary>
@@ -111,7 +113,7 @@ public class MemoryCache : ICache
     {
         _cache.TryRemove(key, out _);
 
-        if (_persistentCache != null) _persistentCache.Remove(key);
+        // if (_persistentCache != null) _persistentCache.Remove(key);
     }
 
     /// <summary>
@@ -124,7 +126,7 @@ public class MemoryCache : ICache
         cancellationToken.ThrowIfCancellationRequested();
         Remove(key);
 
-        if (_persistentCache != null) await _persistentCache.RemoveAsync(key);
+        // if (_persistentCache != null) await _persistentCache.RemoveAsync(key);
     }
 
     /// <summary>

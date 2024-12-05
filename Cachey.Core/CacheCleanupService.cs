@@ -1,20 +1,12 @@
+using Cachey.Common.Interfaces;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
 namespace Cachey.Core;
 
-public class CacheCleanupService : BackgroundService
+public class CacheCleanupService(ILogger<CacheCleanupService> logger, ICache cache) : BackgroundService
 {
-    private readonly ICache _cache;
-    private readonly ILogger<CacheCleanupService> _logger;
-    private TimeSpan _cleanupInterval;
-
-    public CacheCleanupService(ILogger<CacheCleanupService> logger, ICache cacheRepository, TimeSpan cleanupInterval)
-    {
-        _logger = logger;
-        _cache = cacheRepository;
-        _cleanupInterval = cleanupInterval; // Подразумевани интервал
-    }
+    private TimeSpan _cleanupInterval = TimeSpan.FromDays(1);
 
     public void SetCleanupInterval(TimeSpan interval)
     {
@@ -23,24 +15,24 @@ public class CacheCleanupService : BackgroundService
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
-        _logger.LogInformation("Cache cleanup service started with interval {Interval}", _cleanupInterval);
+        logger.LogInformation("Cache cleanup service started with interval {Interval}", _cleanupInterval);
 
         while (!stoppingToken.IsCancellationRequested)
         {
             try
             {
-                _logger.LogInformation("Running cache cleanup...");
-                await _cache.RemoveExpiredItemsAsync();
-                _logger.LogInformation("Cache cleanup completed.");
+                logger.LogInformation("Running cache cleanup...");
+                await cache.RemoveExpiredItemsAsync();
+                logger.LogInformation("Cache cleanup completed.");
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error during cache cleanup.");
+                logger.LogError(ex, "Error during cache cleanup.");
             }
 
             await Task.Delay(_cleanupInterval, stoppingToken);
         }
 
-        _logger.LogInformation("Cache cleanup service stopping.");
+        logger.LogInformation("Cache cleanup service stopping.");
     }
 }

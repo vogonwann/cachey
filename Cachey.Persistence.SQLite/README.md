@@ -1,111 +1,151 @@
 
 # Cachey
 
-**Cachey** is a lightweight, modular, and extensible caching library designed to provide in-memory and persistent caching mechanisms with configurable expiration and cleanup policies.
+**Cachey** is a lightweight, flexible caching library for .NET applications. It supports both in-memory and persistent caching with easy integration and customization.
 
 ## Features
 
-- **In-Memory Cache**: High-performance caching for frequently accessed data.
-- **Persistent Cache**: Optional persistent storage with SQLite support.
-- **Expiration Policies**: Configurable item expiration times.
-- **Background Cleanup**: Periodic removal of expired items for optimal memory usage.
-- **Metrics**: Tracks cache hits, misses, and overall performance.
+- In-memory caching for fast and lightweight operations.
+- Persistent caching for durable data storage.
+- Automatic cleanup of expired items with customizable intervals.
+- Seamless integration with dependency injection (DI) and configuration.
 
 ## Installation
 
-Cachey is distributed as a .NET library. To install, use the NuGet package manager:
+Add **Cachey** to your project using your package manager:
 
 ```bash
 dotnet add package Cachey
 ```
 
-## Usage
+## Quick Start
 
-### Basic Setup
+### 1. Register Cachey in DI
 
-To start using Cachey, initialize an instance of the `Cache` class:
-
-```csharp
-var cache = new Cache();
-```
-
-### Adding and Retrieving Items
+You can register `Cachey` in your application's DI container using the `UseCachey` method. Here's an example:
 
 ```csharp
-await cache.SetAsync("key", "value", TimeSpan.FromMinutes(5));
-var value = await cache.GetAsync<string>("key");
+builder.Services.UseCachey(builder.Configuration)
+    .AddCacheCleanupService(TimeSpan.FromHours(1));
 ```
 
-### Checking for Existence
+- `UseCachey` integrates Cachey into your application, dynamically deciding whether to use in-memory or persistent cache based on configuration.
+- `AddCacheCleanupService` registers a background service to periodically clean up expired cache items.
+
+### 2. Configuring Persistence
+
+The caching behavior is determined by the `Cache` section in your application's configuration file (e.g., `appsettings.json`).
+
+#### Example Configuration:
+
+```json
+{
+  "Cache": {
+    "UsePersistentCache": true
+  }
+}
+```
+
+- Set `UsePersistentCache` to `true` to enable persistent caching.
+- When persistent caching is enabled, Cachey will use a SQLite database to store cache entries.
+
+#### Using a Custom Connection String:
+
+To specify a custom SQLite connection string, add the following to your configuration:
+
+```json
+{
+  "Cache": {
+    "UsePersistentCache": true,
+    "ConnectionString": "DataSource=mycustomcache.db"
+  }
+}
+```
+
+> Cachey automatically configures a default SQLite database (`mycache.db`) if a custom connection string is not provided.
+
+### 3. Accessing Cachey in Your Code
+
+Inject the `ICache` interface into your services or controllers to start using Cachey:
 
 ```csharp
-bool exists = await cache.ContainsAsync("key");
+public class MyService
+{
+    private readonly ICache _cache;
+
+    public MyService(ICache cache)
+    {
+        _cache = cache;
+    }
+
+    public async Task DoWorkAsync()
+    {
+        // Store a value in the cache
+        await _cache.SetAsync("key", "value", TimeSpan.FromMinutes(10));
+
+        // Retrieve a value from the cache
+        var cachedValue = await _cache.GetAsync<string>("key");
+
+        // Remove a value from the cache
+        await _cache.RemoveAsync("key");
+    }
+}
 ```
 
-### Removing Items
+## Adding Cleanup Service
+
+The cleanup service automatically removes expired cache items at regular intervals. You can customize the interval like this:
 
 ```csharp
-await cache.RemoveAsync("key");
+builder.Services.UseCachey(builder.Configuration)
+    .AddCacheCleanupService(TimeSpan.FromMinutes(30));
 ```
 
-### Clearing the Cache
+### Cleanup Behavior
+
+The cleanup service runs periodically, based on the specified interval, to ensure expired items are removed from the cache.
+
+## Full Example
+
+Here’s a complete example of setting up Cachey in an ASP.NET Core application:
+
+### `Program.cs`
 
 ```csharp
-await cache.ClearAsync();
+var builder = WebApplication.CreateBuilder(args);
+
+// Add Cachey
+builder.Services.UseCachey(builder.Configuration)
+    .AddCacheCleanupService(TimeSpan.FromHours(1));
+
+var app = builder.Build();
+
+app.MapGet("/", async (ICache cache) =>
+{
+    // Set a cache entry
+    await cache.SetAsync("example", "Hello, Cachey!", TimeSpan.FromMinutes(5));
+
+    // Retrieve the cached value
+    var value = await cache.GetAsync<string>("example");
+    return value ?? "Cache entry not found!";
+});
+
+app.Run();
 ```
 
-### Background Cleanup Service
+### `appsettings.json`
 
-Cachey includes a background cleanup service to remove expired items automatically. You can configure and start it as follows:
-
-```csharp
-var cleanupService = new BackgroundCleanupService(cache, TimeSpan.FromSeconds(30));
-cleanupService.Start();
+```json
+{
+  "Cache": {
+    "UsePersistentCache": true,
+    "ConnectionString": "DataSource=mycustomcache.db"
+  }
+}
 ```
 
-## Metrics
-
-Metrics provide insights into cache performance:
-
-```csharp
-var metrics = cache.GetMetrics();
-Console.WriteLine($"Hits: {metrics.Hits}, Misses: {metrics.Misses}");
-```
-
-## Persistent Caching
-
-To enable persistent caching with SQLite:
-
-1. Add the `Cachey.Persistence.SQLite` package:
-   ```bash
-   dotnet add package Cachey.Persistence.SQLite
-   ```
-
-2. Use the `SqliteCacheRepository`:
-
-   ```csharp
-   var options = new DbContextOptionsBuilder<CacheyDbContext>()
-       .UseSqlite("Data Source=cachey.db")
-       .Options;
-
-   var context = new CacheyDbContext(options);
-   var persistentCache = new SqliteCacheRepository(context);
-
-   var cache = new Cache(persistentCache);
-   ```
-
-## Testing
-
-Cachey includes a suite of tests to ensure reliability. To run the tests, use:
-
-```bash
-dotnet test
-```
-
-## Contributions
-
-Contributions are welcome! Feel free to submit issues or pull requests on the [GitHub repository](https://github.com/your-repo/cachey).
+---
 
 ## License
 
-Cachey is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
+Cachey is licensed under the MIT License.
