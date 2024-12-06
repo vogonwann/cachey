@@ -14,14 +14,13 @@ public static class CacheyConfigurator
         
         if (usePersistentCache)
         {
-            serviceCollection.AddTransient<ICache, SqliteCacheRepository>();
             serviceCollection.AddDbContext<CacheyDbContext>(options =>
                 options.UseSqlite("DataSource=mycache.db"));
-            serviceCollection.AddTransient<ICache, SqliteCacheRepository>();
+            serviceCollection.AddSingleton<ICache, SqliteCacheRepository>();
         }
         else
         {
-            serviceCollection.AddTransient<ICache, MemoryCache>();
+            serviceCollection.AddSingleton<ICache, MemoryCache>();
         }
 
         return serviceCollection;
